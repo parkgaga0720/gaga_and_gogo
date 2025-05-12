@@ -1,11 +1,11 @@
 package gaga_gogo;
 
-public class Dog {
-
+public class Dog extends Pet {
     private String state = "Standing";
     private int speed = 0;
 
-    public void sitting() {
+    @Override
+    public void sit() {
         if (state.equals("Sitting")) {
             System.out.println("고고는 이미 앉아있습니다.");
         } else {
@@ -14,16 +14,18 @@ public class Dog {
         }
     }
 
-    public void waiting() {
+    @Override
+    public void waitNow() {
         if (state.equals("Sitting")) {
             state = "Waiting";
             System.out.println("고고가 기다리고 있습니다.");
-        }else {
+        } else {
             System.out.println("고고는 먼저 앉아야 기다릴 수 있습니다.");
         }
     }
 
-    public void eating() {
+    @Override
+    public void eat() {
         if (state.equals("Waiting")) {
             state = "Eating";
             System.out.println("고고가 칭찬으로 간식을 먹습니다.");
@@ -32,17 +34,19 @@ public class Dog {
         }
     }
 
-    public void happy() {
-        if (state.equals("Waiting") || state.equals("Sitting") || state.equals("Eating")) {
+    @Override
+    public void walk() {
+        if (state.equals("Sitting") || state.equals("Waiting") || state.equals("Eating")) {
             state = "Walking";
             speed = 1;
             System.out.println("고고가 산책을 나와서 신났습니다!");
         } else {
-            System.out.println("고고는 집에서 다른 훈련을 먼저 해야 합니다.");
+            System.out.println("고고는 집에서 다른 교육을 먼저 해야 합니다.");
         }
     }
 
-    public void running() {
+    @Override
+    public void run() {
         if (state.equals("Walking") || state.equals("Running")) {
             state = "Running";
             speed++;
@@ -52,37 +56,14 @@ public class Dog {
         }
     }
 
-    public void sad() {
-        if (state.equals("Walking")) {
+    @Override
+    public void goHome() {
+        if (state.equals("Walking") || state.equals("Running")) {
             state = "Standing";
+            speed = 0;
             System.out.println("고고가 집에 돌아와서 시무룩해합니다.");
         } else {
-            System.out.println("고고는 집에 있습니다.");
+            System.out.println("고고는 이미 집에 있습니다.");
         }
-    }
-
-
-    public boolean isStanding() {
-        return state.equals("Standing");
-    }
-
-    public boolean isSitting() {
-        return state.equals("Sitting");
-    }
-
-    public boolean isWaiting() {
-        return state.equals("Waiting");
-    }
-
-    public boolean isEating() {
-        return state.equals("Eating");
-    }
-
-    public boolean isWalking() {
-        return state.equals("Walking");
-    }
-
-    public boolean isRunning() {
-        return state.equals("Running");
     }
 }
